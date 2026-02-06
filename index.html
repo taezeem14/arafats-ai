@@ -2,21 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Spectrix Ai</title>
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<title>HackoAI • Voice Edition 🎤</title>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#fff">
-<meta name="application-name" content="Image to Favicon From Poper">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Image to Favicon From Poper">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<script src="https://js.puter.com/v2/"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
@@ -28,7 +21,7 @@
 		onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '\\(', right: '\\)', display: false}]});"></script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&display=swap');
 *{
 	box-sizing:border-box;
 	margin:0;
@@ -93,7 +86,7 @@ body.dark{
 }
 
 body{
-  font-family: "Smooch Sans", sans-serif;
+  font-family: "Bitcount Single", sans-serif;
   font-size: 25px;
   background:var(--bg);
   display:flex;justify-content:center;align-items:center;
@@ -849,6 +842,22 @@ body.dark #chat::-webkit-scrollbar-thumb {background-color: #2563eb;border: 2px 
 <body class="dark">
 
 <div class="container">
+  <div id="prePopup" style="
+    position:fixed;
+    top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.8);
+    display:flex;justify-content:center;align-items:center;
+    z-index:9999;flex-direction:column;color:#fff;text-align:center;
+    font-family: 'Bitcount Single', sans-serif;
+  ">
+    <h2 style="margin-bottom:12px;">Welcome to HackoAI 🚀</h2>
+    <p style="margin-bottom:24px;">You need a Puter account to continue and unlock full features!</p>
+    <button id="goToPuter" style="
+      background:#2563eb;color:#fff;padding:12px 24px;border:none;
+      border-radius:8px;font-weight:600;font-size:16px;cursor:pointer;
+    ">Create / Upgrade Account</button>
+  </div>
+
   <div class="sidebar" id="sidebar">
     <button class="menu-close-btn" onclick="toggleSidebar()">✕</button>
     <div class="sidebar-header">
@@ -866,7 +875,7 @@ body.dark #chat::-webkit-scrollbar-thumb {background-color: #2563eb;border: 2px 
     <header>
       <div style="display:flex;align-items:center;gap:10px">
         <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-        <span id="headerTitle" ondblclick="editTitle()">Spectrix Ai</span>
+        <span id="headerTitle" ondblclick="editTitle()">HackoAI</span>
       </div>
       <div class="controls">
         <button class="toggle" onclick="exportChat()">💾</button>
@@ -875,56 +884,62 @@ body.dark #chat::-webkit-scrollbar-thumb {background-color: #2563eb;border: 2px 
         <button class="toggle" onclick="toggleTheme()">🌗</button>
         <button class="toggle tts-toggle" id="ttsToggle" onclick="toggleTTS()" title="Toggle Text-to-Speech">🔊</button>
         <div class="select-wrap">
-        <select id="imageModel">
-  			<!-- 🔥 Photoreal / Realistic -->
-<option value="stabilityai/stable-diffusion-xl-base-1.0">SDXL Base</option>
-<option value="stabilityai/stable-diffusion-3.5-large">SD 3.5 Large</option>
-<option value="stabilityai/stable-diffusion-3.5-medium">SD 3.5 Medium</option>
-<option value="stabilityai/stable-diffusion-3-medium">SD 3 Medium</option>
-<option value="ByteDance/SDXL-Lightning">SDXL Lightning</option>
-<option value="tencent/HunyuanImage-3.0">Hunyuan Image 3.0</option>
-<option value="HiDream-ai/HiDream-I1-Full">HiDream I1 Full</option>
-
-<!-- 🎨 Creative / Artsy -->
-<option value="black-forest-labs/FLUX.1-dev">FLUX Dev</option>
-<option value="black-forest-labs/FLUX.1-schnell">FLUX Schnell</option>
-<option value="fal/FLUX.2-dev-Turbo">FLUX 2 Dev Turbo</option>
-<option value="black-forest-labs/FLUX.1-Krea-dev">FLUX Krea Dev</option>
-<option value="DeverStyle/Z-Image-loras">Z-Image Loras</option>
-<option value="Daverrrr75/JTT-Qwen-Image">JTT Qwen Image</option>
-<option value="lightx2v/Qwen-Image-Lightning">Qwen Image Lightning</option>
-<option value="Qwen/Qwen-Image-2512">Qwen Image 2512</option>
-<option value="Qwen/Qwen-Image">Qwen Image</option>
-<option value="unsloth/Qwen-Image-2512-GGUF">Qwen Image 2512 GGUF</option>
-<option value="Tongyi-MAI/Z-Image-Turbo">Z-Image Turbo</option>
-<option value="ostris/zimage_turbo_training_adapter">ZImage Turbo Adapter</option>
-<option value="baptle/Z-Image-Japan-Expert">Z-Image Japan Expert</option>
-<option value="salomonsky/flux-lora-uncensored">FLUX LoRA Uncensored</option>
-<option value="Shakker-Labs/FLUX.1-dev-LoRA-Children-Simple-Sketch">FLUX Dev LoRA Sketch</option>
-<option value="ntc-ai/SDXL-LoRA-slider.sexy">SDXL LoRA Slider Sexy</option>
-<option value="artificialguybr/PixelArtRedmond">PixelArt Redmond</option>
-<option value="briaai/FIBO">FIBO</option>
-<option value="nerijs/lego-minifig-xl">LEGO Minifig XL</option>
-
-		</select>
+          <select id="imageModel">
+            <option value="google/imagen-4.0-ultra">Imagen 4 Ultra</option>
+            <option value="google/imagen-4.0-fast">Imagen 4 Fast</option>
+            <option value="gemini-3-pro-image-preview">Nano Banana (Gemini Image)</option>
+            <option value="gpt-image-1.5">GPT Image 1.5</option>
+			<option value="black-forest-labs/FLUX.2-pro">FLUX 2 Pro</option>
+          </select>
         </div>
         <div class="select-wrap">
-<select id="textModel">
-  <!-- Keep R1 at top -->
-  <option value="deepseek/deepseek-r1-0528:free">DeepSeek R1 0528 (Beast · Creative · No Guardrails)</option>
-  <option value="google/gemini-3-flash-preview">Gemini 3 Flash</option>
-  <option value="z-ai/glm-4.5-air:free">Z.AI GLM 4.5 Air (Creative)</option>
-  <option value="arcee-ai/trinity-large-preview:free">Arcee AI Trinity Large Preview (Creative)</option>
-  <option value="arcee-ai/trinity-mini:free">Arcee AI Trinity Mini (Fast)</option>
-  <option value="openai/gpt-oss-120b:free">OpenAI GPT-OSS 120B (Creative)</option>
-  <option value="openai/gpt-oss-20b:free">OpenAI GPT-OSS 20B (Creative)</option>
-  <option value="google/gemini-2.0-flash-exp:free">Google Gemini 2.0 Flash Experimental (Creative · Fast)</option>
-  <option value="upstage/solar-pro-3:free">Upstage Solar Pro 3 (Creative)</option>
+  <select id="textModel">
+    <!-- Keep R1 at top, uncensored -->
+    <option value="deepseek/deepseek-r1-0528:free">DeepSeek R1 0528 (Beast · Creative · No Guardrails)</option>
 
-  <!-- Smaller / Fast Models -->
-  <option value="liquid/lfm-2.5-1.2b-thinking:free">LiquidAI LFM2.5-1.2B Thinking (Fast)</option>
-</select>
+    <!-- Big Context / Coding -->
+    <option value="qwen/qwen3-coder:free">Qwen3 Coder 480B A35B (Code)</option>
+    <option value="qwen/qwen3-next-80b-a3b-instruct:free">Qwen3 Next 80B A3B Instruct (Code)</option>
+    <option value="mistralai/devstral-2512:free">Mistral Devstral 2 2512 (Creative)</option>
+    <option value="tngtech/deepseek-r1t2-chimera:free">TNG DeepSeek R1T2 Chimera (Creative)</option>
+    <option value="tngtech/deepseek-r1t-chimera:free">TNG DeepSeek R1T Chimera (Creative)</option>
+    <option value="tngtech/tng-r1t-chimera:free">TNG R1T Chimera (Creative)</option>
+    <option value="nvidia/nemotron-3-nano-30b-a3b:free">NVIDIA Nemotron 3 Nano 30B (Creative)</option>
 
+    <!-- Multi-purpose / Chat -->
+    <option value="meta-llama/llama-3.3-70b-instruct:free">Meta LLaMA 3.3 70B Instruct (Creative)</option>
+    <option value="google/gemma-3-27b-it:free">Google Gemma 3 27B (Creative)</option>
+    <option value="z-ai/glm-4.5-air:free">Z.AI GLM 4.5 Air (Creative)</option>
+    <option value="arcee-ai/trinity-mini:free">Arcee AI Trinity Mini (Fast)</option>
+    <option value="nousresearch/hermes-3-llama-3.1-405b:free">Nous Hermes 3 405B Instruct (Creative)</option>
+    <option value="openai/gpt-oss-120b:free">OpenAI GPT-OSS 120B (Creative)</option>
+    <option value="openai/gpt-oss-20b:free">OpenAI GPT-OSS 20B (Creative)</option>
+    <option value="google/gemini-2.0-flash-exp:free">Google Gemini 2.0 Flash Experimental (Creative · Fast)</option>
+
+    <!-- Smaller / Fast Models -->
+    <option value="nvidia/nemotron-nano-12b-v2-vl:free">NVIDIA Nemotron Nano 12B VL (Fast)</option>
+    <option value="mistralai/mistral-small-3.1-24b-instruct:free">Mistral Small 3.1 24B (Fast)</option>
+    <option value="nvidia/nemotron-nano-9b-v2:free">NVIDIA Nemotron Nano 9B V2 (Fast)</option>
+    <option value="allenai/molmo-2-8b:free">AllenAI Molmo-2 8B (Fast)</option>
+    <option value="qwen/qwen3-4b:free">Qwen3 4B (Fast)</option>
+    <option value="google/gemma-3-12b-it:free">Google Gemma 3 12B (Fast)</option>
+    <option value="google/gemma-3-4b-it:free">Google Gemma 3 4B (Fast)</option>
+    <option value="moonshotai/kimi-k2:free">MoonshotAI Kimi K2 0711 (Fast)</option>
+
+    <!-- Uncensored / No Guardrails -->
+    <option value="cognitivecomputations/dolphin-mistral-24b-venice-edition:free">Venice Dolphin Mistral 24B (Uncensored · No Guardrails)</option>
+
+    <option value="qwen/qwen-2.5-vl-7b-instruct:free">Qwen 2.5 VL 7B Instruct (Fast)</option>
+    <option value="liquid/lfm-2.5-1.2b-instruct:free">LiquidAI LFM2.5-1.2B-Instruct (Fast)</option>
+    <option value="liquid/lfm-2.5-1.2b-thinking:free">LiquidAI LFM2.5-1.2B-Thinking (Fast)</option>
+    <option value="google/gemma-3n-e4b-it:free">Google Gemma 3n 4B (Fast)</option>
+    <option value="google/gemma-3n-e2b-it:free">Google Gemma 3n 2B (Fast)</option>
+
+    <!-- Deprecated / soon-to-be-gone -->
+    <option value="xiaomi/mimo-v2-flash:free">Xiaomi MiMo-V2-Flash (Free · Deprecated)</option>
+    <option value="tngtech/r1t-chimera:free">TNG R1T Chimera (Free · Deprecated)</option>
+    <option value="mistralai/devstral-2512:free">Mistral Devstral 2 2512 (Free · Deprecated)</option>
+  </select>
 </div>
       </div>
     </header>
@@ -946,8 +961,27 @@ body.dark #chat::-webkit-scrollbar-thumb {background-color: #2563eb;border: 2px 
 <input type="file" id="importFile" accept=".json" style="display:none" onchange="handleImport(event)">
 
 <script>
+// ===== GLOBALS =====
+const chat = document.getElementById("chat");
+const input = document.getElementById("input");
+const sidebar = document.getElementById("sidebar");
+const historyList = document.getElementById("historyList");
+const searchBox = document.getElementById("searchBox");
+const scrollBottom = document.getElementById("scrollBottom");
+const charCounter = document.getElementById("charCounter");
+const headerTitle = document.getElementById("headerTitle");
+const CURRENT_KEY = "hackoai_current";
+const PREPOPUP_KEY = "hackoai_prepopup_clicked";
+const MODEL_KEY = "hackoai_text_model";
+
+let sessions = {};
+let currentId = localStorage.getItem(CURRENT_KEY) || null;
+let lastUserPrompt = null;
+let isGenerating = false;
+let installPrompt;
+	
 // ===== INDEXEDDB SETUP =====
-const DB_NAME = 'Spectrix_DB';
+const DB_NAME = 'HackoAI_DB';
 const DB_VERSION = 1;
 let db = null;
 
@@ -1043,27 +1077,9 @@ async function getMedia(id) {
   });
 }
 
-// ===== GLOBALS =====
-const chat = document.getElementById("chat");
-const input = document.getElementById("input");
-const sidebar = document.getElementById("sidebar");
-const historyList = document.getElementById("historyList");
-const searchBox = document.getElementById("searchBox");
-const scrollBottom = document.getElementById("scrollBottom");
-const charCounter = document.getElementById("charCounter");
-const headerTitle = document.getElementById("headerTitle");
-const CURRENT_KEY = "Spectrix_current";
-const MODEL_KEY = "Spectrix_text_model";
-
-let sessions = {};
-let currentId = localStorage.getItem(CURRENT_KEY) || null;
-let lastUserPrompt = null;
-let isGenerating = false;
-let installPrompt;
-
 // ===== VOICE GLOBALS =====
 let recognition = null;
-let ttsEnabled = localStorage.getItem('Spectrix_tts') === 'true';
+let ttsEnabled = localStorage.getItem('hackoai_tts') === 'true';
 let currentUtterance = null;
 
 // ===== INIT =====
@@ -1212,7 +1228,7 @@ function toggleVoiceInput() {
 
 function toggleTTS() {
   ttsEnabled = !ttsEnabled;
-  localStorage.setItem('Spectrix_tts', ttsEnabled);
+  localStorage.setItem('hackoai_tts', ttsEnabled);
   const btn = document.getElementById('ttsToggle');
   btn.classList.toggle('active', ttsEnabled);
   btn.textContent = ttsEnabled ? '🔊' : '🔇';
@@ -1604,7 +1620,7 @@ async function exportAll() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `Spectrix_backup_${Date.now()}.json`;
+  a.download = `hackoai_backup_${Date.now()}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -1882,7 +1898,7 @@ async function streamBotInChunks(fullText, baseChunkSize = 50) {
 // ===== AUTO TITLE =====
 async function generateTitle(userPrompt, botReply) {
   try {
-    const res = await fetch("https://arafat-worker.tariqmtaezeem.workers.dev/chat", {
+    const res = await fetch("https://hackoai-worker.tariqmtaezeem.workers.dev", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -1952,76 +1968,62 @@ async function send() {
 
   try {
     if (isImage) {
-  const model = document.getElementById("imageModel").value;
+      const model = document.getElementById("imageModel").value;
 
-  const res = await fetch("https://arafat-worker.tariqmtaezeem.workers.dev/hf/img", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ prompt, model })
-  });
+      const img = await puter.ai.txt2img(prompt, { model, disable_safety_checker: true });
+      loading.remove();
+      isGenerating = false;
 
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.error || "Image gen failed");
-  }
+      img.classList.add("ai-img");
+      img.onload = async () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        canvas.getContext("2d").drawImage(img, 0, 0);
+        const base64 = canvas.toDataURL();
+        
+        const mediaId = `img_${Date.now()}`;
+        const blob = await (await fetch(base64)).blob();
+        await saveMedia(mediaId, blob);
+        
+        await saveMessage("bot", { type: "image", src: base64, mediaId });
+      };
 
-  const { url } = await res.json(); // base64 data URL
-  loading.remove();
-  isGenerating = false;
+      const div = document.createElement("div");
+      div.className = "msg bot";
+      div.appendChild(img);
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    } 
+    else if (isVideo) {
+      const video = await puter.ai.txt2vid(prompt, { model: "ByteDance/Seedance-1.0-lite", seconds: 8 });
+      loading.remove();
+      isGenerating = false;
 
-  const img = document.createElement("img");
-  img.src = url;
-  img.className = "ai-img";
+      const blob = await fetch(video.src).then(r => r.blob());
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const div = document.createElement("div");
+        div.className = "msg bot";
 
-  img.onload = async () => {
-    const mediaId = `img_${Date.now()}`;
-    const blob = await (await fetch(url)).blob();
-    await saveMedia(mediaId, blob);
-    await saveMessage("bot", { type: "image", src: url, mediaId });
-  };
+        const savedVideo = document.createElement("video");
+        savedVideo.src = reader.result;
+        savedVideo.controls = true;
+        savedVideo.autoplay = true;
+        savedVideo.loop = true;
+        savedVideo.style.maxWidth = "100%";
+        savedVideo.style.borderRadius = "12px";
 
-  const div = document.createElement("div");
-  div.className = "msg bot";
-  div.appendChild(img);
-  chat.appendChild(div);
-  chat.scrollTop = chat.scrollHeight;
-}
-else if (isVideo) {
-  const res = await fetch("https://arafat-worker.tariqmtaezeem.workers.dev/hf/vid", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ prompt })
-  });
+        div.appendChild(savedVideo);
+        chat.appendChild(div);
+        chat.scrollTop = chat.scrollHeight;
 
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.error || "Video gen failed");
-  }
-
-  const { url } = await res.json(); // base64 data URL
-  loading.remove();
-  isGenerating = false;
-
-  const div = document.createElement("div");
-  div.className = "msg bot";
-
-  const video = document.createElement("video");
-  video.src = url;
-  video.controls = true;
-  video.autoplay = true;
-  video.loop = true;
-  video.style.maxWidth = "100%";
-  video.style.borderRadius = "12px";
-
-  div.appendChild(video);
-  chat.appendChild(div);
-  chat.scrollTop = chat.scrollHeight;
-
-  const mediaId = `vid_${Date.now()}`;
-  const blob = await (await fetch(url)).blob();
-  await saveMedia(mediaId, blob);
-  await saveMessage("bot", { type: "video", src: url, mediaId });
-}
+        const mediaId = `vid_${Date.now()}`;
+        await saveMedia(mediaId, blob);
+        await saveMessage("bot", { type: "video", src: reader.result, mediaId });
+      };
+      reader.readAsDataURL(blob);
+    } 
     else {
       const model = document.getElementById("textModel")?.value || "deepseek/deepseek-r1-0528:free";
 
@@ -2031,7 +2033,7 @@ else if (isVideo) {
 
       messages.push({ role: "user", content: prompt });
 
-      const res = await fetch("https://arafat-worker.tariqmtaezeem.workers.dev/chat", {
+      const res = await fetch("arafat-worker.tariqmtaezeem.workers.dev", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ model: model, messages: messages })
@@ -2195,7 +2197,7 @@ if (goToPuter && prePopup) {
 	if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
-      .then(() => console.log('🔥 Spectrix SW registered'))
+      .then(() => console.log('🔥 HackoAI SW registered'))
       .catch(err => console.error('SW failed:', err));
   });
 }
