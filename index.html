@@ -1996,7 +1996,7 @@ async function send() {
       chat.scrollTop = chat.scrollHeight;
     } 
     else if (isVideo) {
-      const video = await puter.ai.txt2vid(prompt, { model: "ByteDance/Seedance-1.0-lite", seconds: 8 });
+      const video = await puter.ai.txt2vid(prompt, { model: "ByteDance/Seedance-1.0-lite", seconds: 6 });
       loading.remove();
       isGenerating = false;
 
