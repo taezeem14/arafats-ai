@@ -1,7 +1,7 @@
 {
-  "name": "Image to Favicon From Poper",
-  "short_name": "Image to Favicon From Poper",
-  "description": null,
+  "name": "Arafat-Ai",
+  "short_name": "Arafat-Ai",
+  "description": "Arafat-Ai voice-enabled AI chat PWA.",
   "dir": "auto",
   "lang": "en-US",
   "display": "standalone",

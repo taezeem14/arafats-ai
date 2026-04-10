@@ -1,0 +1,60 @@
+{
+  "rewrites": [
+    {
+      "source": "/chat",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/chat"
+    },
+    {
+      "source": "/chat/stream",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/chat/stream"
+    },
+    {
+      "source": "/github",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/github"
+    },
+    {
+      "source": "/hf/img",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/hf/img"
+    },
+    {
+      "source": "/hf/vid",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/hf/vid"
+    },
+    {
+      "source": "/leaderboard/top",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/leaderboard/top"
+    },
+    {
+      "source": "/leaderboard/submit",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/leaderboard/submit"
+    },
+    {
+      "source": "/api/chat",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/chat"
+    },
+    {
+      "source": "/api/chat/stream",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/chat/stream"
+    },
+    {
+      "source": "/api/github",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/github"
+    },
+    {
+      "source": "/api/hf/img",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/hf/img"
+    },
+    {
+      "source": "/api/hf/vid",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/hf/vid"
+    },
+    {
+      "source": "/api/leaderboard/top",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/leaderboard/top"
+    },
+    {
+      "source": "/api/leaderboard/submit",
+      "destination": "https://arafat-worker.tariqmtaezeem.workers.dev/leaderboard/submit"
+    }
+  ]
+}
